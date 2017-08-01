@@ -1,0 +1,19 @@
+#: init/apache.js
+msgid "CI Server not found"
+msgstr "Servidor CI no encontrado"
+
+#: init/apache.js
+msgid "Command apache: "
+msgstr "Comando apache: "
+
+#: public/form/apache-form.js
+msgid "Server"
+msgstr "Servidor"
+
+#: public/form/apache-form.js
+msgid "Functions"
+msgstr "Funciones"
+
+#: public/form/apache-form.js
+msgid "Custom Params"
+msgstr "Parametros personalizados"
