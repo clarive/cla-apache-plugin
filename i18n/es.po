@@ -16,4 +16,4 @@ msgstr "Funciones"
 
 #: public/form/apache-form.js
 msgid "Custom Params"
-msgstr "Parametros personalizados"
+msgstr "Parámetros personalizados"

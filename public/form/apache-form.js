@@ -32,11 +32,13 @@
             customParams.hide();
         }
     });
-    var customParams = Cla.ui.textField({
+    var customParams = Cla.ui.arrayGrid({
         name: 'custom',
         fieldLabel: _('Custom Params'),
         hidden: !(data.args == 'custom'),
-        value: data.custom || ''
+        value: data.custom,
+        description: _('Custom Params'),
+        default_value: '.'
     });
 
     var errors = Cla.ui.errorManagementBox({

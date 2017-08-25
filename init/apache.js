@@ -11,7 +11,7 @@ reg.register('service.apache.server', {
         var apacheServer = params.server;
         var command = '';
         var args = params.args || '';
-        var customParams = params.custom || '';
+        var customParams = params.custom;
         var ciServer = ci.findOne({
             mid: apacheServer + ''
         });
@@ -24,8 +24,8 @@ reg.register('service.apache.server', {
             command = 'httpd -k ' + args;
         }
 
-        if (customParams && !command) {
-            command = 'httpd ' + customParams;
+        if (customParams.length > 0 && !command) {
+            command = 'httpd ' + customParams.join(" ");
         }
         log.debug(_("Command apache: ") + command);
 
