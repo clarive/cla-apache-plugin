@@ -1,7 +1,7 @@
 name: Clarive Apache Plugin
 description: Apache plugin will allow you to interact with Apache HTTP Server through CLI.
 version: 1.0
-icon: https://github.com/clarive/cla-apache-plugin/public/icon/apache.svg
+icon: https://cdn.rawgit.com/clarive/cla-apache-plugin/master/public/icon/apache.svg?sanitize=true
 url: https://github.com/clarive/cla-apache-plugin
 requires:
   - clarive_version: 6.8 <= version
