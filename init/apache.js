@@ -4,6 +4,28 @@ reg.register('service.apache.server', {
     name: 'Apache Server',
     icon: '/plugin/cla-apache-plugin/icon/apache.svg',
     form: '/plugin/cla-apache-plugin/form/apache-form.js',
+    rulebook: {
+        moniker: 'apache_task',
+        description: _('Launchs Apache commands'),
+        required: [ 'server', 'args'],
+        allow: ['server', 'args', 'custom_args', 'errors'],
+        mapper: {
+            'errors':'type',
+            'custom_args':'custom'
+        },
+        examples: [{
+            apache_task: {
+                server: 'apache_server',
+                args: 'start'
+            }
+        },{
+            apache_task: {
+                server: 'apache_server',
+                args: 'custom',
+                custom_args: ['-D name']
+            }
+        }]
+    },
     handler: function(ctx, params) {
         var ci = require("cla/ci");
         var log = require('cla/log');
