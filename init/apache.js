@@ -7,18 +7,17 @@ reg.register('service.apache.server', {
     rulebook: {
         moniker: 'apache_task',
         description: _('Launchs Apache commands'),
-        required: [ 'server', 'args'],
+        required: ['server', 'args'],
         allow: ['server', 'args', 'custom_args', 'errors'],
         mapper: {
-            'errors':'type',
-            'custom_args':'custom'
+            'custom_args': 'custom'
         },
         examples: [{
             apache_task: {
                 server: 'apache_server',
                 args: 'start'
             }
-        },{
+        }, {
             apache_task: {
                 server: 'apache_server',
                 args: 'custom',
@@ -33,13 +32,35 @@ reg.register('service.apache.server', {
         var apacheServer = params.server;
         var command = '';
         var args = params.args || '';
+        var errors = params.errors || 'warn';
+        var user = params.user || "";
         var customParams = params.custom;
         var ciServer = ci.findOne({
             mid: apacheServer + ''
         });
         if (!ciServer) {
-            log.error(_("CI Server not found"));
-            throw new Error(_('CI Server not found'));
+            log.fatal(_("Server Resource not found"));
+        }
+
+        function remoteCommand(params, command, server, errors, user) {
+            var output = reg.launch('service.scripting.remote', {
+                name: _('Run apache script'),
+                config: {
+                    errors: errors,
+                    server: server,
+                    user: user,
+                    path: command,
+                    output_error: params.output_error,
+                    output_warn: params.output_warn,
+                    output_capture: params.output_capture,
+                    output_ok: params.output_ok,
+                    meta: params.meta,
+                    rc_ok: params.rcOk,
+                    rc_error: params.rcError,
+                    rc_warn: params.rcWarn
+                }
+            });
+            return output;
         }
 
         if (args != "custom") {
@@ -51,24 +72,7 @@ reg.register('service.apache.server', {
         }
         log.debug(_("Command apache: ") + command);
 
-        var output = reg.launch('service.scripting.remote', {
-            name: 'Run apache script',
-            config: {
-                errors: params.type,
-                server: params.server,
-                user: params.user,
-                home: params.home,
-                path: command,
-                output_error: params.output_error,
-                output_warn: params.output_warn,
-                output_capture: params.output_capture,
-                output_ok: params.output_ok,
-                meta: params.meta,
-                rc_ok: params.ok,
-                rc_error: params.error,
-                rc_warn: params.warn
-            }
-        });
-        return output;
+        var response = remoteCommand(params, command, server, errors, user);
+        return response.output;
     }
 });

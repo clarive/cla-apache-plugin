@@ -11,6 +11,13 @@
         with_vars: 1
     });
 
+    var userTextField = Cla.ui.textField({
+        name: 'user',
+        fieldLabel: _('User'),
+        value: data.user || '',
+        allowBlank: true
+    });
+
     var args = Cla.ui.comboBox({
         name: 'args',
         fieldLabel: _('Functions'),
@@ -42,7 +49,7 @@
     });
 
     var errors = Cla.ui.errorManagementBox({
-        errorTypeName: 'type',
+        errorTypeName: 'errors',
         errorTypeValue: params.data.type || 'warn',
         rcOkName: 'ok',
         rcOkValue: params.data.ok,
@@ -57,6 +64,7 @@
         layout: 'form',
         items: [
             serverCombo,
+            userTextField,
             args,
             customParams,
             errors,
