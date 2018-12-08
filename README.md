@@ -1,6 +1,6 @@
 # Apache Plugin
 
-<img src="https://cdn.rawgit.com/clarive/cla-apache-plugin/master/public/icon/apache.svg?sanitize=true" alt="Apache Plugin" title="Apache Plugin" width="120" height="120">
+<img src="https://cdn.jsdelivr.net/gh/clarive/cla-apache-plugin/public/icon/apache.svg?sanitize=true" alt="Apache Plugin" title="Apache Plugin" width="120" height="120">
 
 Apache plugin will allow you to interact with Apache HTTP Server through CLI (Command Line Interface).
 
